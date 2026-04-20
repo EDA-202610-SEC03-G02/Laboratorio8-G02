@@ -107,51 +107,49 @@ def contains(my_rbt, key):
   return get(my_rbt, key) is not None
 
 def size(my_rbt):
-    return size_tree(my_rbt["root"])
+  return size_tree(my_rbt["root"])
 
 def is_empty(my_rbt):
-    return size(my_rbt) == 0
+  return size(my_rbt) == 0
 
 def key_set(my_rbt):
-    key_list = sl.new_list()
-    return key_set_tree(my_rbt["root"], key_list)
+  key_list = sl.new_list()
+  return key_set_tree(my_rbt["root"], key_list)
 
 def key_set_tree(root, key_list):
-    if root is not None:
-        key_set_tree(root["left"], key_list)
-        sl.add_last(key_list, root["key"])
-        key_set_tree(root["right"], key_list)
-    return key_list
+  if root is not None:
+    key_set_tree(root["left"], key_list)
+    sl.add_last(key_list, root["key"])
+    key_set_tree(root["right"], key_list)
+  return key_list
   
 def value_set(my_rbt):
-    value_list = sl.new_list()
-    return value_set_tree(my_rbt["root"], value_list)
+  value_list = sl.new_list()
+  return value_set_tree(my_rbt["root"], value_list)
 
 def value_set_tree(root, value_list):
-    if root is not None:
-        value_set_tree(root["left"], value_list)
-        sl.add_last(value_list, root["value"])
-        value_set_tree(root["right"], value_list)
-    return value_list
+  if root is not None:
+    value_set_tree(root["left"], value_list)
+    sl.add_last(value_list, root["value"])
+    value_set_tree(root["right"], value_list)
+  return value_list
 
 def get_min(my_rbt):
-    return get_min_node(my_rbt["root"])
+  return get_min_node(my_rbt["root"])
 
 def get_min_node(root):
-    if root is None:
-        return None
-    while root["left"] is not None:
-        root = root["left"]
-    return root["key"]
-
+  if root is None:
+    return None
+  while root["left"] is not None:
+    root = root["left"]
+  return root["key"]
 
 def get_max(my_rbt):
-    return get_max_node(my_rbt["root"])
-
+  return get_max_node(my_rbt["root"])
 
 def get_max_node(root):
-    if root is None:
-        return None
-    while root["right"] is not None:
-        root = root["right"]
-    return root["key"]
+  if root is None:
+    return None
+  while root["right"] is not None:
+    root = root["right"]
+  return root["key"]
