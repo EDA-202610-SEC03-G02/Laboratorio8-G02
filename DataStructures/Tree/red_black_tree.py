@@ -8,6 +8,3 @@ def rotate_right(bst):
       izq["right"]=root
       root=izq
       root["right"]["left"]=temp #Primera version de rotate right
-      
-    
-    
