@@ -1,4 +1,5 @@
 from DataStructures.Tree import rbt_node as rbt
+from DataStructures.List import single_linked_list as sl
 
 def default_compare(key, element):
   node_key= element["key"]
@@ -88,3 +89,69 @@ def put(my_rbt, key, value):
   if my_rbt["root"] is not None:
     my_rbt["root"]["color"]= "black"
   return my_rbt
+
+def get(my_rbt, key):
+  return get_node(my_rbt["root"], key)
+
+def get_node(root, key):
+  while root is not None:
+    if key<root["key"]:
+      root = root["left"]
+    elif key > root["key"]:
+      root = root["right"]
+    else:
+      return root["value"]
+  return None
+
+def contains(my_rbt, key):
+  return get(my_rbt, key) is not None
+
+def size(my_rbt):
+    return size_tree(my_rbt["root"])
+
+def is_empty(my_rbt):
+    return size(my_rbt) == 0
+
+def key_set(my_rbt):
+    key_list = sl.new_list()
+    return key_set_tree(my_rbt["root"], key_list)
+
+def key_set_tree(root, key_list):
+    if root is not None:
+        key_set_tree(root["left"], key_list)
+        sl.add_last(key_list, root["key"])
+        key_set_tree(root["right"], key_list)
+    return key_list
+  
+def value_set(my_rbt):
+    value_list = sl.new_list()
+    return value_set_tree(my_rbt["root"], value_list)
+
+def value_set_tree(root, value_list):
+    if root is not None:
+        value_set_tree(root["left"], value_list)
+        sl.add_last(value_list, root["value"])
+        value_set_tree(root["right"], value_list)
+    return value_list
+
+def get_min(my_rbt):
+    return get_min_node(my_rbt["root"])
+
+def get_min_node(root):
+    if root is None:
+        return None
+    while root["left"] is not None:
+        root = root["left"]
+    return root["key"]
+
+
+def get_max(my_rbt):
+    return get_max_node(my_rbt["root"])
+
+
+def get_max_node(root):
+    if root is None:
+        return None
+    while root["right"] is not None:
+        root = root["right"]
+    return root["key"]
