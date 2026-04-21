@@ -166,7 +166,7 @@ def height(my_rbt):
 
 def height_tree(root):
   if root is None:
-    return 0
+    return -1
   
   altura_izq = height_tree(root["left"])
   altura_der = height_tree(root["right"])
