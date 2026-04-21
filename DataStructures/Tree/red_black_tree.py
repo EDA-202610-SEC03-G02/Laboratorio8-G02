@@ -160,3 +160,56 @@ def get_max_node(root):
   while root["right"] is not None:
     root = root["right"]
   return root["key"]
+
+def height(my_rbt):
+  return height_tree(my_rbt["root"])
+
+def height_tree(root):
+  if root is None:
+    return 0
+  
+  altura_izq = height_tree(root["left"])
+  altura_der = height_tree(root["right"])
+  
+  if altura_izq > altura_der:
+    return 1 + altura_izq
+  else:
+    return 1 + altura_der
+
+def keys(my_rbt, key_initial, key_final):
+  lista_llaves = sl.new_list()
+  return keys_range(my_rbt["root"], key_initial, key_final, lista_llaves)
+
+def keys_range(root, key_initial, key_final, key_list):
+  if root is None:
+    return key_list
+  
+  if key_initial < root["key"]:
+    keys_range(root["left"], key_initial, key_final, key_list)
+  
+  if key_initial <= root["key"] and root["key"] <= key_final:
+    sl.add_last(key_list, root["key"])
+  
+  if root["key"] < key_final:
+    keys_range(root["right"], key_initial, key_final, key_list)
+  
+  return key_list
+
+def values(my_rbt, key_initial, key_final):
+  lista_valores = sl.new_list()
+  return values_range(my_rbt["root"], key_initial, key_final, lista_valores)
+
+def values_range(root, key_initial, key_final, value_list):
+  if root is None:
+    return value_list
+  
+  if key_initial < root["key"]:
+    values_range(root["left"], key_initial, key_final, value_list)
+  
+  if key_initial <= root["key"] and root["key"] <= key_final:
+    sl.add_last(value_list, root["value"])
+  
+  if root["key"] < key_final:
+    values_range(root["right"], key_initial, key_final, value_list)
+  
+  return value_list
