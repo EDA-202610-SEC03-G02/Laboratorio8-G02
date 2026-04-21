@@ -25,7 +25,7 @@ def rotate_left(node_rbt):
   node_rbt["right"]= new_root["left"]
   new_root["left"]= node_rbt
   new_root["color"]= node_rbt["color"]
-  node_rbt["color"]= "red"
+  node_rbt["color"]= rbt.RED
   
   new_root["size"]= node_rbt["size"]
   size_left= size_tree(node_rbt["left"])
@@ -40,7 +40,7 @@ def rotate_right(node_rbt):
   node_rbt["left"]= new_root["right"]
   new_root["right"]= node_rbt
   new_root["color"]= node_rbt["color"]
-  node_rbt["color"]= "red"
+  node_rbt["color"]= rbt.RED
   
   new_root["size"]= node_rbt["size"]
   size_left= size_tree(node_rbt["left"])
@@ -49,10 +49,10 @@ def rotate_right(node_rbt):
   return new_root
 
 def flip_node_color(node_rbt):
-  if node_rbt["color"]=="red":
-    node_rbt["color"]="black"
+  if node_rbt["color"]==rbt.RED:
+    node_rbt["color"]=rbt.BLACK
   else:
-    node_rbt["color"]="red"
+    node_rbt["color"]=rbt.RED
   return node_rbt
 
 def flip_colors(node_rbt):
@@ -94,7 +94,7 @@ def insert_node(root, key, value):
 def put(my_rbt, key, value):
   my_rbt["root"]= insert_node(my_rbt["root"], key, value)
   if my_rbt["root"] is not None:
-    my_rbt["root"]["color"]= "black"
+    my_rbt["root"]["color"]= rbt.BLACK
   return my_rbt
 
 def get(my_rbt, key):

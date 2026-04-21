@@ -204,14 +204,14 @@ def min_key(analyzer):
     """
     Llave mas pequena
     """
-    return rbt.left_key(analyzer["dateIndex"])
+    return rbt.get_min(analyzer["dateIndex"])
 
 
 def max_key(analyzer):
     """
     Llave mas grande
     """
-    return rbt.right_key(analyzer["dateIndex"])
+    return rbt.get_max(analyzer["dateIndex"])
 
 
 def index_height_areas(analyzer):
@@ -254,8 +254,10 @@ def get_crimes_by_range_area(analyzer, initialArea, finalArea):
     finalArea = int(finalArea)
     lst = rbt.values(analyzer["areaIndex"], initialArea, finalArea)
     totalcrimes = 0
-    for area in lst["elements"]:
-        totalcrimes += al.size(area)
+    current = lst["first"]
+    while current is not None:
+        totalcrimes += al.size(current["info"])
+        current = current["next"]
     return totalcrimes
 
 def get_crimes_by_range(analyzer, initialDate, finalDate):
