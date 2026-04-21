@@ -1,6 +1,13 @@
 from DataStructures.Tree import rbt_node as rbt
 from DataStructures.List import single_linked_list as sl
 
+def new_map():
+  my_rbt = {
+    "root": None,
+    "type": "RBT"
+  }
+  return my_rbt
+
 def default_compare(key, element):
   node_key= element["key"]
   if key<node_key:
